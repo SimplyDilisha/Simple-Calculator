@@ -1,93 +1,82 @@
-red="\033[31m"
-cyan="\033[36m"
-green="\033[92m"
-yellow="\033[93m"
-blue="\033[94m"
-reset="\033[0m"
+red = "\033[31m"
+cyan = "\033[36m"
+green = "\033[92m"
+yellow = "\033[93m"
+blue = "\033[94m"
+reset = "\033[0m"
 
 
-def add(a,b):
-    sum=a+b
-    print("The sum of the numbers is:",sum)
+def add(a, b):
+    return a + b
 
-def differnce(a,b):
-    diff=a-b
-    print("The difference between the numbers is:",diff)
+def subtract(a, b):
+    return a - b
 
-def product(a,b):
-    product=a*b
-    print("The product of two numbers is:",product)
+def multiply(a, b):
+    return a * b
 
-def floor_div(a,b):
-    floor_div=a//b
-    print("The floor division of a and b is:",floor_div)
+def floor_division(a, b):
+    return a // b
 
-def div(a,b):
-    div=a/b
-    print("The division of a and b is:",div)
+def division(a, b):
+    return a / b
 
-def rem(a,b):
-    remainder=a%b
-    print("The modulous/remainder of the two numbers is:",remainder)
+def modulus(a, b):
+    return a % b
+
+def exponent(a, b):
+    return a ** b
+
+def maximum(a, b):
+    return max(a, b)
+
+def minimum(a, b):
+    return min(a, b)
 
 
-def exp(a,b):
-    exp=a**b
-    print("a raised to power b is:",exp)
+operations = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "//": floor_division,
+    "/": division,
+    "%": modulus,
+    "**": exponent,
+    "max": maximum,
+    "min": minimum
+}
 
-def maximum(a,b):
-    great=max(a,b)
-    print("The greater number is:",great)
-
-def minimum(a,b):
-    small=min(a,b)
-    print("The smaller number is:",small)
 
 def main():
-    try:
-        print(cyan+"====Simple Calculator===="+reset)
-        a=int(input(green+"Enter first number:"+reset))
-        b=int(input(green+"Enter second number:"+reset))
-        print(cyan+"=====Choose the Operation==="+reset)
-        op=input(yellow+"Enter the operation (add, subtract, product, floor division, division, modulus, exponent, maximum, minimum):"+reset).lower()
-        if op=="add":
-         add(a,b)
-        elif op=="subtract":
-         differnce(a,b)
-        elif op=="product":
-         product(a,b)
-        elif op=="floor division":
-         floor_div(a,b)
-        elif op=="division":
-         div(a,b)
-        elif op=="modulus":
-         rem(a,b)
-        elif op=="exponent":
-         exp(a,b)
-        elif op=="maximum":
-         maximum(a,b)
-        elif op=="minimum":
-         minimum(a,b)
-    
-    
+    print(cyan + "\n==== Advanced Calculator ====\n" + reset)
 
-    except ZeroDivisionError:
-        print(red+"Error: Division by zero is not allowed."+reset)
+    while True:
+        try:
+            a = float(input(green + "Enter first number: " + reset))
+            b = float(input(green + "Enter second number: " + reset))
 
-    except ValueError:
-        print(red+"Error: Please enter valid integers."+reset)
+            print(cyan + "\nAvailable Operations:" + reset)
+            print(yellow + "+  -  *  /  //  %  **  max  min" + reset)
 
-     
+            op = input(blue + "Choose operation: " + reset)
 
-if __name__=="__main__":
+            if op in operations:
+                result = operations[op](a, b)
+                print(green + f"\nResult: {result}\n" + reset)
+            else:
+                print(red + "Invalid operation selected!" + reset)
+
+        except ZeroDivisionError:
+            print(red + "Error: Division by zero is not allowed." + reset)
+
+        except ValueError:
+            print(red + "Error: Please enter valid numbers." + reset)
+
+        choice = input(cyan + "Do you want to continue? (yes/no): " + reset).lower()
+        if choice != "yes":
+            print(blue + "\nThank you for using the calculator! 👋" + reset)
+            break
+
+
+if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-    
